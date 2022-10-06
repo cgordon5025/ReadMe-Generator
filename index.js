@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { nextTick } = require('process');
+const markDown = require('./utils/generateMarkdown')
 // console.log(inquirer)
 // console.log(fs)
 // TODO: Create an array of questions for user input
@@ -33,9 +33,11 @@ const questions = [
         name: 'credits'
     },
     {
-        type: 'input',
+        type: 'list',
         message: "What license are you using for this project?",
+        choices: ["Apache License 2.0", "GNU General Public License v3.0", "MIT License", "BSD 2-Clause 'Simplified License", "BSD 3-Clause 'New' or'Revised' License", "Broost Software License 1.0", "Creative Commons Zero v1.0 Universal", "Eclipse Public License 2.0", "GNU Affero General Public License v3.0", "GNU General Public License v2.0", "GNU Lesser General Public License v2.1", "Mozilla Public License v2.1", "The Unilicense"],
         name: 'license'
+        //make this drop down list
     },
     {
         type: 'input',
@@ -43,30 +45,30 @@ const questions = [
         name: 'test_instruct'
     }
 ];
-async function ask() {
-    inquirer
-        .prompt(questions)
+// async function ask() {
+//     inquirer
+//         .prompt(questions)
 
-        .then((response) => {//(response.repo_name) ?
-            // for (var i = 0; i < response.length; i++) {
-            //     console.log(response.[i])
-            // }
-            inputs.push(response)
-            console.log(inputs)
-        }
+//         .then((response) => {//(response.repo_name) ?
+//             // for (var i = 0; i < response.length; i++) {
+//             //     console.log(response.[i])
+//             // }
+//             inputs.push(response)
+//             console.log(inputs)
+//         }
 
-            // console.log(response.repo_name)
-            // inputs.push(response.questions), //:
-            //push all responses into an array?
-            // await console.log(inputs)
-            //const inputs = await inquirer.prompt(questions);
-            // console.log("Your responses: ", inputs),
-            // console.log("Thank you for your responses! Fetching your GitHub data next...")
-        );
-}
-function next() {
-    console.log(inputs)
-}
+//             // console.log(response.repo_name)
+//             // inputs.push(response.questions), //:
+//             //push all responses into an array?
+//             // await console.log(inputs)
+//             //const inputs = await inquirer.prompt(questions);
+//             // console.log("Your responses: ", inputs),
+//             // console.log("Thank you for your responses! Fetching your GitHub data next...")
+//         );
+// }
+// function next() {
+//     console.log(inputs)
+// }
 //string in which we're appending data
 // data = `${inputs[0]}/n ## Description /n ${inputs[1]}`
 // console.log(reponse.description))
@@ -79,11 +81,11 @@ function next() {
 
 // TODO: Create a function to initialize app
 async function init() {
-    ask()
-    var inputs = await ask()
-    console.log(inputs)
+    const userResp = await inquirer.prompt(questions)
+    console.log(userResp)
+    await fs.appendFile("README.md", `${userResp.repo_name} \n\n ## Description \n ${userResp.description} \n\n Table of Contents \nInstallation\n Usage\n Credits\n Licenses\n Tests\n\n ## Installation \n ${userResp.install}\n\n ## Usage\n${userResp.usage}\n\n ##Credits\n${userResp.credits}\n\n ## License \n${userResp.license}\n\n ##Test Instructions \n${userResp.test_instruct}`, (err) =>
+        err ? console.error(err) : console.log('Commit logged!'))
 }
 
 // Function call to initialize app
-// init();
-ask()
+init();
