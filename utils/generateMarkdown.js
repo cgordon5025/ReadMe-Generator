@@ -64,9 +64,9 @@ function generateMarkdown(data) {
   renderLicenseBadge(data.license) //we want this up top
   renderLicenseSection(data.license)
   // console.log(data)
-  console.log(data.license)
-  console.log(licenseID)
-  console.log(licenseTxt)
+  // console.log(data.license)
+  // console.log(licenseID)
+  // console.log(licenseTxt)
   const myData = `${licenseID}\n
   # ${data.repo_name} \n\n
   ## Description \n
@@ -74,19 +74,22 @@ function generateMarkdown(data) {
   ## Table of Contents \n
   [Installation](#installation)\n
   [Usage](#usage)\n
-  [Credits](#credits)\n
+  [Contributions](#to-contribute)\n
   [License](#license)\n
-  [Tests](#test-Instructions)\n
+  [Tests](#tests)\n
   [Questions](#questions)\n
   ## Installation \n
   ${data.installation}\n\n
   ## Usage \n
   ${data.usage}\n\n
-  ## Credits \n
+  ## To Contribute \n
   ${data.credits}\n\n
   ## License \n
   ${licenseTxt}\n\n
-  ## Questions \n\n
+  ## Tests\n
+  ${data.test_instruct}\n\n
+  ## Questions \n
+  See my other repos on my github or send me an email to collaborate\n
   github: [${data.github}](https://github.com/${data.github})\n
   email: ${data.email}
 
@@ -96,12 +99,3 @@ function generateMarkdown(data) {
 }
 
 module.exports = generateMarkdown;
-
-// if (userResp.github) {
-//   const githubLink = `https://github.com ${userResp.github}`
-// }else {const githubLink = ''}
-
-// finalInput = something;
-
-//make a template
-
