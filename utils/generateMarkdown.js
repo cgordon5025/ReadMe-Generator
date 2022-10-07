@@ -1,11 +1,11 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 var licenseID;
+var licenseTxt;
 function renderLicenseBadge(license) {
   switch (license) {
     case "Apache License 2.0":
       licenseID = '[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)'
-      //get license id
       break
     case "GNU General Public License v3.0":
       licenseID = '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)'
@@ -44,6 +44,7 @@ function renderLicenseBadge(license) {
       break
 
   }
+  return licenseID
 }
 
 // TODO: Create a function that returns the license link
@@ -51,36 +52,54 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) { }
 
-function renderTableOfCont() {
-  const table = [
-    '[Installation](##Installation)',
-    '[Usage](##Usage)',
-    '[Credits](##Credits)',
-    '[License](##License)',
-    '[Tests](##Test-Instructions)',
-    '[Questions](##Questions)'
-  ]
-}
-
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string (i personally like N/A)
 function renderLicenseSection(license) {
   //if they choose no no license then the section will display N/A, if not it will display what they want
-  if (license == 'No License') {
-    var licenseTxt = 'N/A'
-  } else {
-    var licenseTxt = license
-  }
+  // if (license == 'No License') {
+  //   var licenseTxt = 'N/A'
+  //   return licenseTxt
+  // } else {
+  //   var licenseTxt = license
+  //   return licenseTxt
+  // }
+  (license == 'No License') ? licenseTxt = 'N/A' : licenseTxt = JSON.parse(license)
+  return licenseTxt
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  renderLicenseBadge() //we want this up top
-  renderLicenseSection()
-  console.log(data)
-  const myData = `# ${data.repo_name}
+  renderLicenseBadge(data) //we want this up top
+  renderLicenseSection(data)
+  // console.log(data)
+  console.log(data.license)
+  console.log(licenseID)
+  console.log(licenseTxt)
+  const myData = `${licenseID}\n
+  # ${data.repo_name} \n\n
+  ## Description \n
+  ${data.description} \n\n
+  ## Table of Contents \n
+  [Installation](#installation)\n
+  [Usage](#usage)\n
+  [Credits](#credits)\n
+  [License](#license)\n
+  [Tests](#test-Instructions)\n
+  [Questions](#questions)\n
+  ## Installation \n
+  ${data.installation}\n\n
+  ## Usage \n
+  ${data.usage}\n\n
+  ## Credits \n
+  ${data.credits}\n\n
+  ## License \n
+  ${licenseTxt}\n\n
+  ## Questions \n\n
+  https://github.com/${data.github}\n
+  ${data.email}
 
-`;
+`
+    ;
   return myData
 }
 

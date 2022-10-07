@@ -97,8 +97,8 @@ function writeToFile(fileName, data) {
 async function init() {
     const userResp = await inquirer.prompt(questions)
     console.log(userResp)
-    await markDown(userResp)
-    await writeToFile("README.md", markDown(userResp))
+    // await markDown(userResp)
+    await writeToFile("sample.md", markDown(userResp))
     // renderLicenseBadge(userResp.license)
     // //move this to markdown.js
     // await fs.appendFile("README.md", `${licenseID} \n\n ${userResp.repo_name} \n\n ## Description \n ${userResp.description} \n\n Table of Contents \nInstallation\n Usage\n Credits\n Licenses\n Tests\n\n ## Installation \n ${userResp.install}\n\n ## Usage\n${userResp.usage}\n\n ##Credits\n${userResp.credits}\n\n ## License \n This is covered under the ${userResp.license} license \n\n ##Test Instructions \n${userResp.test_instruct} \n\n ## Questions \n${githubLink} \n`, (err) =>
