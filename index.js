@@ -8,7 +8,7 @@ const markDown = require('./utils/generateMarkdown')
 const questions = [
     {
         type: 'input',
-        message: 'What is the name of the repository',
+        message: 'What is the name of the repository?',
         name: 'repo_name'
     },
     {
@@ -18,17 +18,17 @@ const questions = [
     },
     {
         type: 'input',
-        message: "How do you install this",
+        message: "How do you install the application?",
         name: 'installation'
     },
     {
         type: 'input',
-        message: "How do you use this",
+        message: "Explain the usage of the application",
         name: 'usage'
     },
     {
         type: 'input',
-        message: "Any outside contirbutions?",
+        message: "What are the contribution guidelines for the repository?",
         name: 'credits'
     },
     {
@@ -59,55 +59,15 @@ function writeToFile(fileName, data) {
         err ? console.error(err) : console.log('Commit logged!'))
 }
 
-// async function ask() {
-//     inquirer
-//         .prompt(questions)
-
-//         .then((response) => {//(response.repo_name) ?
-//             // for (var i = 0; i < response.length; i++) {
-//             //     console.log(response.[i])
-//             // }
-//             inputs.push(response)
-//             console.log(inputs)
-//         }
-
-//             // console.log(response.repo_name)
-//             // inputs.push(response.questions), //:
-//             //push all responses into an array?
-//             // await console.log(inputs)
-//             //const inputs = await inquirer.prompt(questions);
-//             // console.log("Your responses: ", inputs),
-//             // console.log("Thank you for your responses! Fetching your GitHub data next...")
-//         );
-// }
-// function next() {
-//     console.log(inputs)
-// }
-//string in which we're appending data
-// data = `${inputs[0]}/n ## Description /n ${inputs[1]}`
-// console.log(reponse.description))
-// console.log(questions)
-
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) {
-//     fs.appendFile(fileName,data)
-// }
-
 // TODO: Create a function to initialize app
 async function init() {
     const userResp = await inquirer.prompt(questions)
     console.log(userResp)
     // await markDown(userResp)
-    await writeToFile("sample.md", markDown(userResp))
-    // renderLicenseBadge(userResp.license)
-    // //move this to markdown.js
-    // await fs.appendFile("README.md", `${licenseID} \n\n ${userResp.repo_name} \n\n ## Description \n ${userResp.description} \n\n Table of Contents \nInstallation\n Usage\n Credits\n Licenses\n Tests\n\n ## Installation \n ${userResp.install}\n\n ## Usage\n${userResp.usage}\n\n ##Credits\n${userResp.credits}\n\n ## License \n This is covered under the ${userResp.license} license \n\n ##Test Instructions \n${userResp.test_instruct} \n\n ## Questions \n${githubLink} \n`, (err) =>
-    //     err ? console.error(err) : console.log('Commit logged!'))
+    await writeToFile("sample.md", markDown(userResp), (err) =>
+        err ? console.error(err) : console.log('Commit logged!'))
+
 }
 
 // Function call to initialize app
 init();
-
-// //better syntax
-// fs.appendFile("README.md",generateMarkdown, (err) =>
-// err ? console.error(err) : console.log('Commit logged!'))

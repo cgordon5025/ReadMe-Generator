@@ -87,8 +87,8 @@ function generateMarkdown(data) {
   ## License \n
   ${licenseTxt}\n\n
   ## Questions \n\n
-  https://github.com/${data.github}\n
-  ${data.email}
+  github: [${data.github}](https://github.com/${data.github})\n
+  email: ${data.email}
 
 `
     ;
