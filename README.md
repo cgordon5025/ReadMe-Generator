@@ -13,3 +13,6 @@ This uses nodeJS to operate. Run the program by calling the command "node index.
 
 ## License
 N/A
+
+## Link to Video of Walkthrough and sampleHTML and sampleCSS
+[Link to Samples and Walkthrough](https://drive.google.com/drive/folders/15r-UtYEsj97hEjaqfaP85Q7bSYw7h30s?usp=sharing)
